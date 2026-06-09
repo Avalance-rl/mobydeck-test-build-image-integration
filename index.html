@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mobydeck — Deploy Platform</title>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+
+<!-- ── Шапка ──────────────────────────────────────────────────────────── -->
+<header class="header">
+  <a href="/" class="logo">
+    <!-- Логотип: кит в круге -->
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <circle cx="14" cy="14" r="13" fill="#2f81f7" fill-opacity=".15" stroke="#2f81f7" stroke-width="1.5"/>
+      <path d="M7 16c1-3 3-5 5-5s3 1.5 4 1.5S18 11 20 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M20 11c.5 1.5.5 3-.5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <circle cx="9" cy="15" r="1" fill="currentColor"/>
+    </svg>
+    Mobydeck
+  </a>
+
+  <nav class="nav">
+    <a href="#" class="active">Dashboard</a>
+    <a href="#">Apps</a>
+    <a href="#">Activity</a>
+    <a href="#">Settings</a>
+  </nav>
+
+  <div class="header-right">
+    <span class="clock" id="clock">00:00:00</span>
+    <div class="user-pill">
+      <div class="avatar">AK</div>
+      <span class="user-name">alice</span>
+      <div class="online-dot"></div>
+    </div>
+  </div>
+</header>
+
+<!-- ── Основной контент ────────────────────────────────────────────────── -->
+<div class="layout">
+
+  <!-- Левая колонка -->
+  <div class="main-col">
+
+    <!-- KPI-карточки -->
+    <div class="kpi-row">
+      <div class="kpi blue">
+        <div class="kpi-label">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8S12.42 0 8 0zm3.54 6.06L7.5 10.1 4.96 7.56a.75.75 0 0 1 1.06-1.06L7.5 7.98l3-3a.75.75 0 0 1 1.06 1.06z"/>
+          </svg>
+          Активных деплоев
+        </div>
+        <div class="kpi-value" id="kpi-deploys">0</div>
+        <div class="kpi-delta up">↑ 3 за сегодня</div>
+      </div>
+
+      <div class="kpi green">
+        <div class="kpi-label">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M10.5 5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zm-1.5 3H7a3 3 0 0 0-3 3v.5A.5.5 0 0 0 4.5 12h7a.5.5 0 0 0 .5-.5V11a3 3 0 0 0-3-3z"/>
+          </svg>
+          Пользователей онлайн
+        </div>
+        <div class="kpi-value" id="kpi-online">0</div>
+        <div class="kpi-delta up">↑ 12% к вчера</div>
+      </div>
+
+      <div class="kpi yellow">
+        <div class="kpi-label">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h11A1.5 1.5 0 0 1 15 2.5v6.25a.75.75 0 0 1-1.5 0V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h5.25a.75.75 0 0 1 0 1.5H2.5A1.5 1.5 0 0 1 1 12V2.5zm12 9a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75zm0-2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+          </svg>
+          Запросов сегодня
+        </div>
+        <div class="kpi-value" id="kpi-reqs">0</div>
+        <div class="kpi-delta up">↑ 8% к вчера</div>
+      </div>
+
+      <div class="kpi purple">
+        <div class="kpi-label">
+          <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 3.5a.5.5 0 0 1 .5.5v4.25l2.9 1.675a.5.5 0 0 1-.5.866L7.75 8.687A.5.5 0 0 1 7.5 8.25V4a.5.5 0 0 1 .5-.5z"/>
+          </svg>
+          Аптайм
+        </div>
+        <div class="kpi-value" id="kpi-uptime">0%</div>
+        <div class="kpi-delta">последние 30 дней</div>
+      </div>
+    </div>
+
+    <!-- График запросов -->
+    <div class="card">
+      <div class="card-title">Запросы за последний час</div>
+      <div class="chart-wrap">
+        <svg id="chart" preserveAspectRatio="none"></svg>
+      </div>
+      <div class="chart-labels" id="chart-labels">
+        <span>−60 мин</span>
+        <span>−45 мин</span>
+        <span>−30 мин</span>
+        <span>−15 мин</span>
+        <span>сейчас</span>
+      </div>
+    </div>
+
+    <!-- Таблица приложений -->
+    <div class="card">
+      <div class="card-title">Приложения</div>
+      <table class="apps-table">
+        <thead>
+          <tr>
+            <th>Приложение</th>
+            <th>Статус</th>
+            <th>Деплой</th>
+            <th>Трафик</th>
+          </tr>
+        </thead>
+        <tbody id="apps-tbody"></tbody>
+      </table>
+    </div>
+
+  </div><!-- /main-col -->
+
+  <!-- Правая колонка -->
+  <div class="side-col">
+
+    <!-- Онлайн-счётчик -->
+    <div class="card">
+      <div class="card-title">Онлайн сейчас</div>
+      <div class="online-card">
+        <div>
+          <div class="online-count" id="online-count">312</div>
+          <div class="online-label">активных сессий</div>
+        </div>
+        <div class="online-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="currentColor">
+            <circle cx="24" cy="24" r="20" fill="currentColor" opacity=".08"/>
+            <circle cx="24" cy="24" r="12" fill="currentColor" opacity=".15"/>
+            <circle cx="24" cy="24" r="5"  fill="currentColor"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Лента активности -->
+    <div class="card">
+      <div class="card-title">Лента активности</div>
+      <div class="activity-list" id="activity-list"></div>
+    </div>
+
+  </div><!-- /side-col -->
+
+</div><!-- /layout -->
+
+<!-- Тосты -->
+<div class="toast-container" id="toast-container"></div>
+
+<script src="/assets/app.js"></script>
+</body>
+</html>
