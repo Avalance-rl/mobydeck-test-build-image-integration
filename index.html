@@ -3,160 +3,341 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mobydeck — Deploy Platform</title>
+  <title>NEXUS — Компьютерный клуб</title>
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
 
-<!-- ── Шапка ──────────────────────────────────────────────────────────── -->
-<header class="header">
-  <a href="/" class="logo">
-    <!-- Логотип: кит в круге -->
-    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-      <circle cx="14" cy="14" r="13" fill="#2f81f7" fill-opacity=".15" stroke="#2f81f7" stroke-width="1.5"/>
-      <path d="M7 16c1-3 3-5 5-5s3 1.5 4 1.5S18 11 20 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M20 11c.5 1.5.5 3-.5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-      <circle cx="9" cy="15" r="1" fill="currentColor"/>
-    </svg>
-    Mobydeck
-  </a>
+<canvas id="star-canvas"></canvas>
 
-  <nav class="nav">
-    <a href="#" class="active">Dashboard</a>
-    <a href="#">Apps</a>
-    <a href="#">Activity</a>
-    <a href="#">Settings</a>
-  </nav>
+<!-- ── Навбар ─────────────────────────────────────────────────────────── -->
+<nav class="nav">
+  <a href="#hero" class="nav-logo">NEX<span>US</span></a>
+  <ul class="nav-links">
+    <li><a href="#zones">Зоны</a></li>
+    <li><a href="#pricing">Тарифы</a></li>
+    <li><a href="#events">События</a></li>
+    <li><a href="#contacts">Контакты</a></li>
+  </ul>
+  <a href="#pricing" class="nav-cta">Забронировать</a>
+</nav>
 
-  <div class="header-right">
-    <span class="clock" id="clock">00:00:00</span>
-    <div class="user-pill">
-      <div class="avatar">AK</div>
-      <span class="user-name">alice</span>
-      <div class="online-dot"></div>
+<!-- ── Hero ───────────────────────────────────────────────────────────── -->
+<section id="hero" class="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    Онлайн сейчас: <strong id="online-count">—</strong> игроков
+  </div>
+
+  <h1 class="hero-title">
+    <span class="glow-cyan">Следующий уровень</span>
+    <span class="line2 glow-purple">начинается здесь</span>
+  </h1>
+
+  <p class="hero-sub">
+    Клуб с профессиональным оборудованием, высокой скоростью и атмосферой,
+    где побеждают. 80 мест, 240 Гц, 24/7.
+  </p>
+
+  <div class="hero-btns">
+    <a href="#pricing" class="btn-primary">Начать играть</a>
+    <a href="#zones"   class="btn-ghost">Посмотреть зоны</a>
+  </div>
+
+  <div class="hero-brands">
+    <span>ASUS ROG</span>
+    <span>·</span>
+    <span>MSI</span>
+    <span>·</span>
+    <span>BenQ ZOWIE</span>
+    <span>·</span>
+    <span>HyperX</span>
+    <span>·</span>
+    <span>Nvidia RTX</span>
+  </div>
+</section>
+
+<!-- ── Статы ──────────────────────────────────────────────────────────── -->
+<div class="stats-row reveal">
+  <div class="stat-item">
+    <div class="stat-num c" id="stat-seats">0+</div>
+    <div class="stat-label">Игровых мест</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num p" id="stat-fps">0 fps</div>
+    <div class="stat-label">Частота мониторов</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num g" id="stat-hours">0</div>
+    <div class="stat-label">Режим работы</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num w" id="stat-members">0</div>
+    <div class="stat-label">Постоянных игроков</div>
+  </div>
+</div>
+
+<!-- ── Зоны ───────────────────────────────────────────────────────────── -->
+<section id="zones" class="section">
+  <div class="section-label">Пространства</div>
+  <h2 class="section-title">Три зоны — <em>один уровень</em></h2>
+  <p class="section-sub">
+    От соревновательного гейминга до VR-погружения — оборудование подобрано для каждого формата.
+  </p>
+
+  <div class="zones-grid">
+
+    <div class="zone-card reveal">
+      <div class="zone-icon c">
+        <!-- Иконка монитора -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+        </svg>
+      </div>
+      <div class="zone-name">Pro Zone</div>
+      <div class="zone-desc">40 мест для соревновательного гейминга. Максимальная периферия, минимальный пинг.</div>
+      <div class="zone-spec">
+        RTX 4080 · i9-14900K<br>
+        32 GB DDR5 · NVMe 2TB<br>
+        BenQ 27" 240 Hz · 0.5ms<br>
+        Gigabit Fiber · ping &lt;1ms
+      </div>
+    </div>
+
+    <div class="zone-card purple reveal">
+      <div class="zone-icon p">
+        <!-- Иконка VR-очков -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#b44dff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 8a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8z"/><circle cx="9" cy="12" r="2"/><circle cx="15" cy="12" r="2"/>
+        </svg>
+      </div>
+      <div class="zone-name">VR Arena</div>
+      <div class="zone-desc">8 изолированных кабин с полным погружением. Half-Life: Alyx, Beat Saber, Superhot VR.</div>
+      <div class="zone-spec">
+        Meta Quest 3 · Valve Index<br>
+        RTX 4090 · Tracking 6DOF<br>
+        Комната 4×4 м каждая<br>
+        Дезинфекция после сеанса
+      </div>
+    </div>
+
+    <div class="zone-card green reveal">
+      <div class="zone-icon g">
+        <!-- Иконка консоли -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00ff88" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 12h4M8 10v4"/><circle cx="16" cy="11" r="1" fill="#00ff88"/><circle cx="18" cy="13" r="1" fill="#00ff88"/>
+          <path d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6z"/>
+        </svg>
+      </div>
+      <div class="zone-name">Console Lounge</div>
+      <div class="zone-desc">PS5 и Xbox Series X на 4K-телевизорах. Диваны, неон, атмосфера.</div>
+      <div class="zone-spec">
+        8× PlayStation 5<br>
+        6× Xbox Series X<br>
+        LG OLED 55" 120 Hz<br>
+        Dolby Atmos Sound
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Тарифы ─────────────────────────────────────────────────────────── -->
+<section id="pricing" class="section">
+  <div class="section-label">Цены</div>
+  <h2 class="section-title">Выбери <em>свой тариф</em></h2>
+  <p class="section-sub">Без скрытых платежей. Пополнить счёт можно на ресепшене или через приложение.</p>
+
+  <div class="pricing-grid">
+
+    <div class="price-card reveal">
+      <div class="price-name">Стандарт</div>
+      <div class="price-amount"><sup>₽</sup>100</div>
+      <div class="price-period">за час · PC зона</div>
+      <ul class="price-features">
+        <li>Любой ПК в Standard Zone</li>
+        <li>Гарнитура и коврик в комплекте</li>
+        <li>Безлимитный чай / кофе</li>
+        <li class="dis">Приоритетный выбор места</li>
+        <li class="dis">Хранение профиля и настроек</li>
+      </ul>
+      <a href="#contacts" class="btn-plan">Выбрать</a>
+    </div>
+
+    <div class="price-card featured reveal">
+      <div class="price-tag">Популярный</div>
+      <div class="price-name">Pro</div>
+      <div class="price-amount"><sup>₽</sup>180</div>
+      <div class="price-period">за час · Pro Zone</div>
+      <ul class="price-features">
+        <li>RTX 4080 · 240 Гц монитор</li>
+        <li>Топовая механическая клавиатура</li>
+        <li>Хранение профиля и настроек</li>
+        <li>Приоритетный выбор места</li>
+        <li>Безлимитные напитки + снеки</li>
+      </ul>
+      <a href="#contacts" class="btn-plan">Выбрать</a>
+    </div>
+
+    <div class="price-card reveal">
+      <div class="price-name">Абонемент</div>
+      <div class="price-amount"><sup>₽</sup>2 900</div>
+      <div class="price-period">в месяц · неограниченно</div>
+      <ul class="price-features">
+        <li>30 часов в любой зоне</li>
+        <li>Скидка 20% на турниры</li>
+        <li>Персональный шкаф для вещей</li>
+        <li>Ранний доступ к новым играм</li>
+        <li>Карта лояльности + бонусы</li>
+      </ul>
+      <a href="#contacts" class="btn-plan">Выбрать</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── События ────────────────────────────────────────────────────────── -->
+<section id="events" class="section">
+  <div class="section-label">Турниры и события</div>
+  <h2 class="section-title">Ближайшие <em>события</em></h2>
+  <p class="section-sub">Еженедельные турниры, стримы и закрытые вечеринки. Призовой фонд — живыми деньгами.</p>
+
+  <div class="schedule-grid">
+
+    <div class="event-card reveal">
+      <div class="event-date">
+        <div class="event-day">14</div>
+        <div class="event-month">июн</div>
+      </div>
+      <div class="event-body">
+        <div class="event-name">CS2 Weekly Cup</div>
+        <div class="event-meta">
+          <span>⏱ 19:00 МСК</span>
+          <span>👥 5v5</span>
+          <span class="event-prize">₽ 5 000</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card reveal">
+      <div class="event-date">
+        <div class="event-day">15</div>
+        <div class="event-month">июн</div>
+      </div>
+      <div class="event-body">
+        <div class="event-name">Dota 2 Amateur League</div>
+        <div class="event-meta">
+          <span>⏱ 18:00 МСК</span>
+          <span>👥 5v5</span>
+          <span class="event-prize">₽ 8 000</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card reveal">
+      <div class="event-date">
+        <div class="event-day">18</div>
+        <div class="event-month">июн</div>
+      </div>
+      <div class="event-body">
+        <div class="event-name">VR Beat Saber Battle</div>
+        <div class="event-meta">
+          <span>⏱ 15:00 МСК</span>
+          <span>👥 Соло</span>
+          <span class="event-prize">₽ 2 500</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card reveal">
+      <div class="event-date">
+        <div class="event-day">21</div>
+        <div class="event-month">июн</div>
+      </div>
+      <div class="event-body">
+        <div class="event-name">Valorant Open Series</div>
+        <div class="event-meta">
+          <span>⏱ 12:00 МСК</span>
+          <span>👥 5v5</span>
+          <span class="event-prize">₽ 15 000</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card reveal">
+      <div class="event-date">
+        <div class="event-day">25</div>
+        <div class="event-month">июн</div>
+      </div>
+      <div class="event-body">
+        <div class="event-name">FIFA 25 Pro Clash</div>
+        <div class="event-meta">
+          <span>⏱ 17:00 МСК</span>
+          <span>👥 1v1</span>
+          <span class="event-prize">₽ 3 000</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="event-card reveal">
+      <div class="event-date">
+        <div class="event-day">28</div>
+        <div class="event-month">июн</div>
+      </div>
+      <div class="event-body">
+        <div class="event-name">Ночной марафон — Free Night</div>
+        <div class="event-meta">
+          <span>⏱ 23:00 → 07:00</span>
+          <span>🎮 Все зоны</span>
+          <span class="event-prize">₽ 500 фикс</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CTA / Контакты ─────────────────────────────────────────────────── -->
+<section id="contacts" class="cta-section">
+  <div class="section-label" style="justify-content:center">Как нас найти</div>
+  <h2 class="cta-title">
+    Приходи и <span class="glow-cyan">побеждай</span>
+  </h2>
+  <p class="cta-sub">Открыты 24/7. Бронь места — без предоплаты.</p>
+
+  <div class="hero-btns">
+    <a href="tel:+74951234567" class="btn-primary">+7 (495) 123-45-67</a>
+    <a href="#" class="btn-ghost">Написать в Telegram</a>
+  </div>
+
+  <div class="info-row">
+    <div class="info-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
+      </svg>
+      ул. Арбат, 24, Москва
+    </div>
+    <div class="info-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      </svg>
+      24 часа, 7 дней в неделю
+    </div>
+    <div class="info-item">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92V20a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 4 5.18 2 2 0 0 1 6 3h3.09a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L10 11a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 24 18v2.92z"/>
+      </svg>
+      Метро Арбатская, 3 мин
     </div>
   </div>
-</header>
+</section>
 
-<!-- ── Основной контент ────────────────────────────────────────────────── -->
-<div class="layout">
-
-  <!-- Левая колонка -->
-  <div class="main-col">
-
-    <!-- KPI-карточки -->
-    <div class="kpi-row">
-      <div class="kpi blue">
-        <div class="kpi-label">
-          <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor">
-            <path d="M8 0C3.58 0 0 3.58 0 8s3.58 8 8 8 8-3.58 8-8S12.42 0 8 0zm3.54 6.06L7.5 10.1 4.96 7.56a.75.75 0 0 1 1.06-1.06L7.5 7.98l3-3a.75.75 0 0 1 1.06 1.06z"/>
-          </svg>
-          Активных деплоев
-        </div>
-        <div class="kpi-value" id="kpi-deploys">0</div>
-        <div class="kpi-delta up">↑ 3 за сегодня</div>
-      </div>
-
-      <div class="kpi green">
-        <div class="kpi-label">
-          <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor">
-            <path d="M10.5 5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zm-1.5 3H7a3 3 0 0 0-3 3v.5A.5.5 0 0 0 4.5 12h7a.5.5 0 0 0 .5-.5V11a3 3 0 0 0-3-3z"/>
-          </svg>
-          Пользователей онлайн
-        </div>
-        <div class="kpi-value" id="kpi-online">0</div>
-        <div class="kpi-delta up">↑ 12% к вчера</div>
-      </div>
-
-      <div class="kpi yellow">
-        <div class="kpi-label">
-          <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor">
-            <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h11A1.5 1.5 0 0 1 15 2.5v6.25a.75.75 0 0 1-1.5 0V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h5.25a.75.75 0 0 1 0 1.5H2.5A1.5 1.5 0 0 1 1 12V2.5zm12 9a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5a.75.75 0 0 1 .75-.75zm0-2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
-          </svg>
-          Запросов сегодня
-        </div>
-        <div class="kpi-value" id="kpi-reqs">0</div>
-        <div class="kpi-delta up">↑ 8% к вчера</div>
-      </div>
-
-      <div class="kpi purple">
-        <div class="kpi-label">
-          <svg width="13" height="13" viewBox="0 0 16 16" fill="currentColor">
-            <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm0 3.5a.5.5 0 0 1 .5.5v4.25l2.9 1.675a.5.5 0 0 1-.5.866L7.75 8.687A.5.5 0 0 1 7.5 8.25V4a.5.5 0 0 1 .5-.5z"/>
-          </svg>
-          Аптайм
-        </div>
-        <div class="kpi-value" id="kpi-uptime">0%</div>
-        <div class="kpi-delta">последние 30 дней</div>
-      </div>
-    </div>
-
-    <!-- График запросов -->
-    <div class="card">
-      <div class="card-title">Запросы за последний час</div>
-      <div class="chart-wrap">
-        <svg id="chart" preserveAspectRatio="none"></svg>
-      </div>
-      <div class="chart-labels" id="chart-labels">
-        <span>−60 мин</span>
-        <span>−45 мин</span>
-        <span>−30 мин</span>
-        <span>−15 мин</span>
-        <span>сейчас</span>
-      </div>
-    </div>
-
-    <!-- Таблица приложений -->
-    <div class="card">
-      <div class="card-title">Приложения</div>
-      <table class="apps-table">
-        <thead>
-          <tr>
-            <th>Приложение</th>
-            <th>Статус</th>
-            <th>Деплой</th>
-            <th>Трафик</th>
-          </tr>
-        </thead>
-        <tbody id="apps-tbody"></tbody>
-      </table>
-    </div>
-
-  </div><!-- /main-col -->
-
-  <!-- Правая колонка -->
-  <div class="side-col">
-
-    <!-- Онлайн-счётчик -->
-    <div class="card">
-      <div class="card-title">Онлайн сейчас</div>
-      <div class="online-card">
-        <div>
-          <div class="online-count" id="online-count">312</div>
-          <div class="online-label">активных сессий</div>
-        </div>
-        <div class="online-icon">
-          <svg width="48" height="48" viewBox="0 0 48 48" fill="currentColor">
-            <circle cx="24" cy="24" r="20" fill="currentColor" opacity=".08"/>
-            <circle cx="24" cy="24" r="12" fill="currentColor" opacity=".15"/>
-            <circle cx="24" cy="24" r="5"  fill="currentColor"/>
-          </svg>
-        </div>
-      </div>
-    </div>
-
-    <!-- Лента активности -->
-    <div class="card">
-      <div class="card-title">Лента активности</div>
-      <div class="activity-list" id="activity-list"></div>
-    </div>
-
-  </div><!-- /side-col -->
-
-</div><!-- /layout -->
-
-<!-- Тосты -->
-<div class="toast-container" id="toast-container"></div>
+<!-- ── Футер ──────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-logo">NEX<span>US</span></div>
+  <div class="footer-copy">© 2025 NEXUS Gaming Club. Все права защищены.</div>
+  <div class="footer-copy">Работаем 24/7</div>
+</footer>
 
 <script src="/assets/app.js"></script>
 </body>
